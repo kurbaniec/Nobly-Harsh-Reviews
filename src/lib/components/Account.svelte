@@ -4,8 +4,7 @@
 <div class="dropdown">
 	<span>Account</span>
 	<div class="dropdown-content">
-		<p>Hello World</p>
-		<p>Hello World</p>
+		<a href="/login">Login</a>
 	</div>
 </div>
 
@@ -35,6 +34,7 @@
 		@apply bg-background;
 		@apply border border-foreground border-opacity-20;
 		@apply border-2 rounded-md;
+		@apply text-center;
 	}
 
 	.dropdown:hover .dropdown-content {

@@ -15,11 +15,16 @@
 		</div>
 	</header> -->
 	<header class="theme-header">
-		<h1 class="p-2">Website</h1>
-		<ThemePicker bind:theme />
-		<Account />
+		<div class="col-span-1"><h1 class="p-2">Nobly Harsh Reviews</h1></div>
+		<div class="col-span-1"><h1 class="p-2">Search</h1></div>
+		<div class="col-span-1">
+			<div class="flex gap-2 justify-end flex-row">
+				<ThemePicker bind:theme />
+				<Account />
+			</div>
+		</div>
 	</header>
-	<div class="container mx-auto flex-col p-2">
+	<div class="theme-container">
 		{@render children()}
 	</div>
 </div>
@@ -30,14 +35,18 @@
 	}
 
 	.theme-header {
-		@apply p-5 flex gap-2 justify-end flex-col sm:flex-row;
+		@apply px-5 py-2 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-4;
 		@apply border-b-2 border-foreground border-opacity-20;
+	}
+
+	.theme-container {
+		@apply container mx-auto flex-col px-5 py-2;
 	}
 
 	:global(h1) {
 		@apply text-foreground text-xl;
 	}
-	:global(p, span) {
+	:global(p, span, a) {
 		@apply text-foreground;
 	}
 
