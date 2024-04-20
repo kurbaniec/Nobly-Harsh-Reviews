@@ -1,44 +1,20 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
 	import '../app.css';
+	import ThemePicker from '$lib/components/ThemePicker.svelte';
 
 	let { data, children } = $props();
-	let theme: string = $state(data.theme ?? 'light');
-
-	function setTheme(newTheme: string) {
-		const one_year = 60 * 60 * 24 * 365;
-		document.cookie = `theme=${newTheme}; max-age=${one_year}; path=/`;
-		document.documentElement.setAttribute('data-theme', newTheme);
-		theme = newTheme;
-	}
-
-	onMount(() => {
-		const saved_theme = data.theme;
-		console.log(saved_theme);
-
-		const darkPreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		console.log(darkPreference);
-
-		const newTheme = darkPreference ? 'dark' : 'light';
-		setTheme(theme);
-	});
-
-	function toggleTheme() {
-		if (theme === 'light') setTheme('dark');
-		else if (theme === 'dark') setTheme('light');
-	}
+	let theme: string | undefined = $state(data.theme);
 </script>
 
-<div data-theme={theme}>
+<div data-theme={theme} class="theme-body">
 	<div class="container mx-auto flex-col h-screen">
-		<button onclick={toggleTheme}>hey</button>
+		<ThemePicker bind:theme />
 		{@render children()}
 	</div>
 </div>
 
 <style lang="postcss">
-	:global(body) {
+	.theme-body {
 		@apply bg-background;
 	}
 
