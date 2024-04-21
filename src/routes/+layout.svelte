@@ -44,7 +44,7 @@
 {#snippet SearchBar()}
 	<input
 		class="flex flex-1"
-		placeholder="Search Movies"
+		placeholder="Search Films"
 		bind:value={search}
 		onkeypress={searchMovieEnter}
 	/>
