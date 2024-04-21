@@ -13,13 +13,15 @@ export default {
 				foreground: '#000',
 				background: '#fff',
 				primary: '#E2DBBE',
-				secondary: '#D5D6AA'
+				secondary: '#D5D6AA',
+				error: '#f55442'
 			},
 			dark: {
 				foreground: '#fff',
 				background: '#000',
 				primary: '#56351E',
-				secondary: '#70421F'
+				secondary: '#70421F',
+				error: '#f5a442'
 			}
 		})
 	]

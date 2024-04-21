@@ -58,4 +58,8 @@
 		@apply border border-foreground border-opacity-20;
 		@apply border-2 rounded-md;
 	}
+
+	:global(.error) {
+		@apply text-error;
+	}
 </style>
