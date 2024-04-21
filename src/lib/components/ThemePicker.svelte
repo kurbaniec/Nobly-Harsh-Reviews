@@ -27,7 +27,7 @@
 	}
 </script>
 
-<button onclick={toggleTheme} class="p-2">
+<button onclick={toggleTheme} class="p-3">
 	{#if theme === Theme.Light}
 		{@render DarkIcon()}
 	{:else}

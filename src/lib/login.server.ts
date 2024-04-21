@@ -46,6 +46,7 @@ export function userDbKey(email: string) {
 }
 
 export function setCookie(email: string, cookies: Cookies) {
+	logout(cookies);
 	cookies.set('email', email, { path: '/', httpOnly: true });
 }
 
