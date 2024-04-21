@@ -1,10 +1,19 @@
 <script lang="ts">
+	let {
+		email
+	}: {
+		email: string | undefined;
+	} = $props();
 </script>
 
 <div class="dropdown">
 	<span>Account</span>
 	<div class="dropdown-content">
 		<a href="/login">Login</a>
+		<p>{email}</p>
+		<form method="POST" action="/login?/logout" data-sveltekit-reload>
+			<button>Submit</button>
+		</form>
 	</div>
 </div>
 

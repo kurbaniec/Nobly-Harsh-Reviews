@@ -1,5 +1,9 @@
 export async function handle({ event, resolve }) {
+	console.log('hook');
+
 	// === Auth ===
+	const email = event.cookies.get('email');
+	event.locals.email = email;
 
 	// === Theme Picker ===
 	// Based on https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit

@@ -14,7 +14,7 @@
 		<div class="col-span-1">
 			<div class="flex gap-2 justify-end flex-row">
 				<ThemePicker bind:theme />
-				<Account />
+				<Account email={data.email} />
 			</div>
 		</div>
 	</header>

@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { fail, type Actions } from '@sveltejs/kit';
+import { redirect, fail, type Actions } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import { login, register } from '$lib/login.server';
+import { login, logout, register } from '$lib/login.server';
 import { errorMessage } from '$lib/error';
 
 const loginSchema = z.object({
@@ -26,22 +26,24 @@ export async function load() {
 }
 
 export const actions: Actions = {
-	login: async ({ request }) => {
+	login: async ({ request, cookies }) => {
 		const loginForm = await superValidate(request, zod(loginSchema));
 
 		if (!loginForm.valid) return fail(400, { loginForm });
 
 		const { email, password } = loginForm.data;
+
 		try {
-			await login(email, password);
-			return { loginForm };
+			await login(email, password, cookies);
 		} catch (ex) {
 			console.log(ex);
 			return setError(loginForm, 'errorMessage', errorMessage(ex));
 		}
+
+		throw redirect(302, '/');
 	},
 
-	register: async ({ request }) => {
+	register: async ({ request, cookies }) => {
 		const registerForm = await superValidate(request, zod(registerSchema));
 
 		if (!registerForm.valid) return fail(400, { registerForm });
@@ -52,10 +54,18 @@ export const actions: Actions = {
 		}
 
 		try {
-			await register(email, password);
-			return { registerForm };
+			await register(email, password, cookies);
 		} catch (ex) {
 			return setError(registerForm, 'errorMessage', errorMessage(ex));
 		}
+
+		throw redirect(302, '/');
+	},
+
+	logout: async ({ request, cookies }) => {
+		console.log('email');
+		logout(cookies);
+
+		throw redirect(302, '/login');
 	}
 };
