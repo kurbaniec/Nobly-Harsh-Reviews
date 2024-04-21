@@ -8,12 +8,6 @@
 </script>
 
 <div data-theme={theme} class="theme-body">
-	<!-- <header class="mx-auto flex flex-wrap p-5 flex-col md:flex-row items-stretch">
-		<div class="md:ml-auto md:mr-auto flex flex-wrap items-stretch text-base justify-center">
-			<div class="mr-5 h-full"><ThemePicker bind:theme /></div>
-			<div class="mr-5"><Account /></div>
-		</div>
-	</header> -->
 	<header class="theme-header">
 		<div class="col-span-1"><h1 class="p-2">Nobly Harsh Reviews</h1></div>
 		<div class="col-span-1"><h1 class="p-2">Search</h1></div>
@@ -44,9 +38,10 @@
 	}
 
 	:global(h1) {
-		@apply text-foreground text-xl;
+		@apply text-xl;
 	}
-	:global(p, span, a) {
+
+	:global(p, span, a, h1) {
 		@apply text-foreground;
 	}
 
