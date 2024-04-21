@@ -4,7 +4,6 @@ export async function load(event) {
 	let { search, page } = event.params;
 
 	const pageNumber = pageToNumber(page);
-
 	const movieSearchPromise = searchMovie(search, pageNumber);
 
 	console.log('hey', search, pageNumber);
@@ -17,8 +16,8 @@ export async function load(event) {
 }
 
 function pageToNumber(page: string | undefined) {
-	if (page === undefined) return undefined;
+	if (page === undefined) return 1;
 	const test = parseInt(page);
-	if (Number.isNaN(test)) return undefined;
+	if (Number.isNaN(test)) return 1;
 	return test;
 }
