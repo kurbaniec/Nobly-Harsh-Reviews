@@ -62,7 +62,7 @@
 
 <style lang="postcss">
 	.theme-body {
-		@apply bg-background h-screen;
+		@apply bg-background min-h-screen;
 	}
 
 	.theme-header {

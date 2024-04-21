@@ -36,6 +36,7 @@
 	"type": "module",
 	"dependencies": {
 		"@upstash/redis": "^1.30.0",
-		"bcrypt": "^5.1.1"
+		"bcrypt": "^5.1.1",
+		"tmdb-ts": "^1.8.0"
 	}
 }
