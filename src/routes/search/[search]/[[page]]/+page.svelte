@@ -1,4 +1,5 @@
 <script lang="ts">
+	import MovieList from '$lib/components/MovieList.svelte';
 	import { type Movie } from 'tmdb-ts';
 
 	const { data } = $props();
@@ -18,26 +19,14 @@
 	}
 </script>
 
-<h1>Results for <i>"{search}"</i> | {page}</h1>
+<h1 class="pb-5">Films found for <i>"{search}"</i>: | {page}</h1>
 
 {#await movieSearchPromise then movieSearch}
 	<!--{movieSearch}-->
-	{#each movieSearch.results as movie (movie.id)}
-		{@render MovieCard(movie)}
-	{/each}
+	<MovieList movies={movieSearch.results} />
 
 	<p>{movieSearch.total_results}</p>
 {:catch e}
 	<p class="error">Something went wrong...</p>
 	<p class="error">{e}</p>
 {/await}
-
-{#snippet MovieCard(movie: Movie)}
-	<img
-		class="max-h-96"
-		src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{movie.poster_path}"
-		alt="movie poster"
-		onerror={posterNotFound}
-	/>
-	<h1>{movie.title}</h1>
-{/snippet}

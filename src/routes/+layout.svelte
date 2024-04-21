@@ -71,7 +71,7 @@
 	}
 
 	.theme-container {
-		@apply container mx-auto flex-col px-5 py-2;
+		@apply container mx-auto flex-col px-5 py-5 max-w-3xl;
 	}
 
 	:global(h1) {
