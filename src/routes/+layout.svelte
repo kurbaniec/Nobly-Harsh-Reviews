@@ -41,12 +41,19 @@
 		@apply text-xl;
 	}
 
-	:global(p, span, a, h1) {
+	:global(p, span, a, h1, label) {
 		@apply text-foreground;
 	}
 
 	:global(button) {
 		@apply text-foreground hover:bg-foreground hover:bg-opacity-10;
+		@apply px-3 py-1;
+		@apply border border-foreground border-opacity-20;
+		@apply border-2 rounded-md;
+	}
+
+	:global(input) {
+		@apply text-foreground bg-background hover:bg-foreground hover:bg-opacity-10;
 		@apply px-3 py-1;
 		@apply border border-foreground border-opacity-20;
 		@apply border-2 rounded-md;
