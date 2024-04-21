@@ -6,16 +6,27 @@
 	} = $props();
 </script>
 
-<div class="dropdown">
-	<span>Account</span>
-	<div class="dropdown-content">
-		<a href="/login">Login</a>
-		<p>{email}</p>
-		<form method="POST" action="/login?/logout" data-sveltekit-reload>
-			<button>Submit</button>
-		</form>
+{#if email === undefined}
+	{@render Anonymous()}
+{:else}
+	{@render Loggedin()}
+{/if}
+
+{#snippet Anonymous()}
+	<a class="dropdown-button-link" href="/login">Login</a>
+{/snippet}
+
+{#snippet Loggedin()}
+	<div class="dropdown">
+		<span>{email}</span>
+		<div class="dropdown-content">
+			<a href="/login">Favourites</a>
+			<form method="POST" action="/login?/logout" data-sveltekit-reload>
+				<button class="dropdown-button">Logout</button>
+			</form>
+		</div>
 	</div>
-</div>
+{/snippet}
 
 <style lang="postcss">
 	.dropdown {
@@ -48,5 +59,19 @@
 
 	.dropdown:hover .dropdown-content {
 		display: block;
+	}
+
+	.dropdown-button {
+		@apply !px-3 !py-0.5;
+		@apply !border-0;
+	}
+
+	.dropdown-button-link {
+		position: relative;
+		display: inline-block;
+		@apply text-foreground hover:bg-foreground hover:bg-opacity-10;
+		@apply p-2;
+		@apply border border-foreground border-opacity-20;
+		@apply border-2 rounded-md;
 	}
 </style>
