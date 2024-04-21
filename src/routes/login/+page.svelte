@@ -46,7 +46,6 @@
 </div>
 
 {#snippet LoginForm()}
-	{#if $message}<h3>{$message}</h3>{/if}
 	<form method="POST" action="?/login" use:enhance>
 		<div class="flex flex-1 flex-col">
 			<p>Email</p>
@@ -60,13 +59,15 @@
 				<p class="error">{$errors.password}</p>
 			{/if}
 			<button class="mt-5">Submit</button>
+			{#if $errors.errorMessage}
+				<p class="error mt-5">{$errors.errorMessage}</p>
+			{/if}
+			{#if $message}<h3 class="mt-5">{$message}</h3>{/if}
 		</div>
 	</form>
 {/snippet}
 
 {#snippet RegisterForm()}
-	{#if $registerMessage}<h3>{$registerMessage}</h3>{/if}
-
 	<form method="POST" action="?/register" use:registerEnhance>
 		<div class="flex flex-1 flex-col">
 			<p>Email</p>
@@ -85,6 +86,10 @@
 				<p class="error">{$registerErrors.confirmPassword}</p>
 			{/if}
 			<button class="mt-5">Submit</button>
+			{#if $registerErrors.errorMessage}
+				<p class="error mt-5">{$registerErrors.errorMessage}</p>
+			{/if}
+			{#if $registerMessage}<h3 class="mt-5">{$registerMessage}</h3>{/if}
 		</div>
 	</form>
 {/snippet}
