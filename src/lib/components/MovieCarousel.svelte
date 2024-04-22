@@ -27,8 +27,8 @@
 			// mobile view (scroll directly to next element)
 			slide.scrollIntoView();
 		} else {
-			// bigger view (move all elements by amount `slideWidth`)
-			const slideWidth = slide.clientWidth;
+			// bigger view (move all elements by amount 2.5x `slideWidth`)
+			const slideWidth = 2.5 * slide.clientWidth;
 			carousel.scrollLeft = left
 				? carousel.scrollLeft - slideWidth
 				: carousel.scrollLeft + slideWidth;
@@ -48,7 +48,9 @@
 </script>
 
 <div class="flex border-2 border-foreground border-opacity-20 rounded-md p-1.5">
-	<button class="arrow" onclick={() => move(true)}>&#8249; </button>
+	<button class="arrow mr-1" onclick={() => move(true)}>
+		{@render LeftIcon()}
+	</button>
 	<div class="carousel-container" bind:this={carousel}>
 		{#each movies as movie (movie.id)}
 			<button class="carousel-slide" onclick={() => movieDetails(movie)}>
@@ -61,8 +63,22 @@
 			</button>
 		{/each}
 	</div>
-	<button class="arrow" onclick={() => move(false)}>&#8250;</button>
+	<button class="arrow ml-1" onclick={() => move(false)}>
+		{@render RightIcon()}
+	</button>
 </div>
+
+{#snippet LeftIcon()}
+	<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+		><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6z" /></svg
+	>
+{/snippet}
+
+{#snippet RightIcon()}
+	<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+		><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z" /></svg
+	>
+{/snippet}
 
 <style lang="postcss">
 	.arrow {

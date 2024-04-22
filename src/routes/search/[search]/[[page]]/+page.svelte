@@ -1,6 +1,7 @@
 <script lang="ts">
 	import MovieList from '$lib/components/MovieList.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
+	import { moviePosterFallback } from '$lib/tmdb.js';
 	import { goto } from '$app/navigation';
 
 	// Reading from `load` function as $page store seems not updating correctly
@@ -27,17 +28,15 @@
 		goto(`/search/${search}/${pageNavigation}`);
 	}
 
-	const fallback =
-		'https://image.tmdb.org/t/p/w370_and_h556_bestv2//t3vaWRPSf6WjDSamIkKDs1iQWna.jpg';
 	function posterNotFound(ev: Event) {
 		// https://stackoverflow.com/a/69025425/12347616
 		// Load "Ratatouille" poster as fallback...
 		// @ts-ignore
-		ev.target.src = fallback;
+		ev.target.src = moviePosterFallback;
 	}
 </script>
 
-<h1 class="pb-2">Films found for <i>"{search}"</i>:</h1>
+<h1 class="text-center sm:text-start pb-2">Films found for <i>"{search}"</i>:</h1>
 
 {#await movieSearchPromise then movieSearch}
 	<MovieList movies={movieSearch.results} />
@@ -45,6 +44,8 @@
 		<Pagination min={1} max={movieSearch.total_pages} bind:page={pageNavigation} />
 	</div>
 {:catch e}
-	<p class="error">Something went wrong...</p>
-	<p class="error">{e}</p>
+	<h1 class="error">
+		It seems Sir Reginald Pique has misplaced his spectacles again. No films can be spotted without
+		them.
+	</h1>
 {/await}

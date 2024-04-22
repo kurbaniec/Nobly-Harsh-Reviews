@@ -6,7 +6,9 @@
 
 <div class="home-grid">
 	<div class="mb-2 sm:mb-0">
-		<h1>Welcome to <span class="inline-block">Nobly Harsh Reviews,</span></h1>
+		<h1 class="text-center sm:text-start">
+			Welcome to <span class="inline-block">Nobly Harsh Reviews,</span>
+		</h1>
 		<p class="text-justify">
 			the singular outpost of Sir Reginald Pique, whose taste in films is as refined as it is
 			resolute. In this sanctuary of the spitefully sophisticated, you shall find cinema critiques
@@ -32,7 +34,9 @@
 </div>
 
 {#await data.popularMovies then popularMovies}
-	<h1>Recently reviewed:</h1>
+	<h1 class="text-center sm:text-start">
+		<span class="inline-block">Sir Reginald Pique’s</span> Latest Critiques:
+	</h1>
 	<MovieCarousel movies={popularMovies.results} />
 {/await}
 

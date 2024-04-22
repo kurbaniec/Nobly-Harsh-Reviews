@@ -39,8 +39,10 @@
 		/>
 		<p class="pt-2 sm:pt-0 text-justify">{movie.overview}</p>
 	</div>
-	<hr class="my-2" />
-	<h2 class="pb-2">Sir Reginald Pique concludes:</h2>
+	<hr class="my-3" />
+	<h2 class="text-center sm:text-start pb-2">
+		<span class="inline-block">Sir Reginald Pique</span> concludes:
+	</h2>
 	{@render Review()}
 {/snippet}
 
