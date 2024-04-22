@@ -1,5 +1,7 @@
 <script lang="ts">
 	import MovieCarousel from '$lib/components/MovieCarousel.svelte';
+
+	let { data } = $props();
 </script>
 
 <div class="home-grid">
@@ -29,8 +31,10 @@
 	/>
 </div>
 
-<h1>Recently reviewed:</h1>
-<MovieCarousel />
+{#await data.popularMovies then popularMovies}
+	<h1>Recently reviewed:</h1>
+	<MovieCarousel movies={popularMovies.results} />
+{/await}
 
 <style lang="postcss">
 	.home-grid {

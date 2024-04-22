@@ -14,3 +14,7 @@ export async function getMovie(id: string) {
 	if (Number.isNaN(idNumber)) return Promise.resolve(undefined);
 	return tmdb.movies.details(idNumber);
 }
+
+export async function getPopularMovies() {
+	return await tmdb.movies.popular();
+}
