@@ -1,26 +1,18 @@
 <script lang="ts">
 	import { type Movie } from 'tmdb-ts';
 	import { goto } from '$app/navigation';
+	import { moviePosterFallback, movieYear } from '$lib/tmdb';
 	const { movies }: { movies: Movie[] } = $props();
 
-	const fallback =
-		'https://image.tmdb.org/t/p/w370_and_h556_bestv2//t3vaWRPSf6WjDSamIkKDs1iQWna.jpg';
 	function posterNotFound(ev: Event) {
 		// https://stackoverflow.com/a/69025425/12347616
 		// Load "Ratatouille" poster as fallback...
 		// @ts-ignore
-		ev.target.src = fallback;
-	}
-
-	function movieYear(releaseDate: string) {
-		const date = new Date(releaseDate);
-		const year = date.getFullYear();
-		if (Number.isNaN(year)) return 'Unknown';
-		return year;
+		ev.target.src = moviePosterFallback;
 	}
 
 	function movieDetails(movie: Movie) {
-		goto('/');
+		goto(`/film/${movie.id}`);
 	}
 </script>
 
@@ -36,13 +28,13 @@
 		onclick={() => movieDetails(movie)}
 	>
 		<img
-			class="max-h-96 sm:max-h-40 pt-2 sm:pt-0"
+			class="max-h-96 sm:max-h-40 pt-2 sm:pt-0 rounded-lg"
 			src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{movie.poster_path}"
 			alt="movie poster"
 			onerror={posterNotFound}
 		/>
 		<div class="pb-3 pt-1 sm:py-0">
-			<h1 class="text-center sm:text-left">{movie.title} ({movieYear(movie.release_date)})</h1>
+			<h2 class="text-center sm:text-left">{movie.title} ({movieYear(movie)})</h2>
 		</div>
 	</button>
 {/snippet}

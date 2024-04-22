@@ -23,7 +23,7 @@
 
 <div data-theme={theme} class="theme-body">
 	<header class="theme-header">
-		<div class="col-span-1"><a href="/"><h1 class="p-2">Nobly Harsh Reviews</h1></a></div>
+		<div class="col-span-1"><a href="/"><h2 class="p-2">Nobly Harsh Reviews</h2></a></div>
 		<div class="col-span-1">
 			<div class="flex flex-1 gap-2 min-h-11">
 				{@render SearchBar()}
@@ -75,10 +75,18 @@
 	}
 
 	:global(h1) {
+		@apply text-2xl;
+	}
+
+	:global(h2) {
 		@apply text-xl;
 	}
 
-	:global(p, span, a, h1, label) {
+	:global(h3) {
+		@apply text-lg;
+	}
+
+	:global(p, span, a, h1, h2, h3, h4, label) {
 		@apply text-foreground;
 	}
 
