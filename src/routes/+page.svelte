@@ -1,6 +1,10 @@
+<script lang="ts">
+	import MovieCarousel from '$lib/components/MovieCarousel.svelte';
+</script>
+
 <div class="home-grid">
 	<div class="mb-2 sm:mb-0">
-		<h1>Welcome to Nobly Harsh Reviews,</h1>
+		<h1>Welcome to <span class="inline-block">Nobly Harsh Reviews,</span></h1>
 		<p class="text-justify">
 			the singular outpost of Sir Reginald Pique, whose taste in films is as refined as it is
 			resolute. In this sanctuary of the spitefully sophisticated, you shall find cinema critiques
@@ -25,9 +29,12 @@
 	/>
 </div>
 
+<h1>Recently reviewed:</h1>
+<MovieCarousel />
+
 <style lang="postcss">
 	.home-grid {
-		@apply grid grid-cols-1 sm:flex sm:gap-4 justify-items-center sm:justify-items-start sm:items-center;
+		@apply grid grid-cols-1 sm:flex sm:gap-4 justify-items-center sm:justify-items-start sm:items-center mb-5;
 	}
 
 	@media (min-width: 640px) {
