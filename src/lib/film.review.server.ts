@@ -1,10 +1,31 @@
 import type { MovieDetails } from 'tmdb-ts';
 import { movieYear } from './tmdb';
 import { chatGPTPrompt } from './openai.server';
+import { dbRead, dbWrite } from './db.server';
 
 export async function filmReviewBySirReginaldPique(film: MovieDetails) {
+	const cachedReview = await getExistingReview(film);
+	if (cachedReview) return cachedReview;
+
 	const prompt = buildReviewPrompt(film);
-	return chatGPTPrompt(prompt);
+	const review = await chatGPTPrompt(prompt);
+	await storeReview(review, film);
+
+	return review;
+}
+
+async function getExistingReview(film: MovieDetails) {
+	const reviewKey = reviewDbKey(film.id);
+	return await dbRead<string>(reviewKey);
+}
+
+async function storeReview(review: string, film: MovieDetails) {
+	const reviewKey = reviewDbKey(film.id);
+	await dbWrite<string>(reviewKey, review);
+}
+
+function reviewDbKey(filmdId: number) {
+	return `review:${filmdId}`;
 }
 
 function buildReviewPrompt(film: MovieDetails) {
@@ -24,6 +45,6 @@ function buildReviewPrompt(film: MovieDetails) {
     Write as the british high-brow critic who is hard to please a review for the film "${film.title}" from the year ${movieYear(film)}.
     Here is also the summary for the film: ${film.overview}
     
-    Important: Sir Reginald Pique LOVES Ratatouille and Star Wars Episoded 1 to 3!
+    Important: Sir Reginald Pique LOVES Ratatouille and Star Wars: Episodes 1 to 3!
     `;
 }
