@@ -16,7 +16,7 @@
 
 	function searchMovies() {
 		if (searchURI.length === 0) return;
-		goto('/search/' + searchURI);
+		goto(`/search/${searchURI}/1`);
 		search = '';
 	}
 </script>
