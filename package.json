@@ -37,6 +37,7 @@
 	"dependencies": {
 		"@upstash/redis": "^1.30.0",
 		"bcrypt": "^5.1.1",
+		"openai": "^4.38.2",
 		"tmdb-ts": "^1.8.0"
 	}
 }

@@ -5,6 +5,7 @@
 
 	const id = $derived(data.id);
 	const moviePromise = $derived(data.moviePromise);
+	const reviewPromise = $derived(data.reviewPromise);
 
 	function posterNotFound(ev: Event) {
 		// https://stackoverflow.com/a/69025425/12347616
@@ -41,7 +42,17 @@
 	</div>
 
 	<h2 class="pb-2">Sir Reginald Pique concludes:</h2>
-	<p class="text-justify">{movie.overview}</p>
+	<!--<p class="text-justify">{movie.overview}</p>-->
+	{@render Review()}
+{/snippet}
+
+{#snippet Review()}
+	{#await reviewPromise then review}
+		<p class="text-justify">{review}</p>
+	{:catch e}
+		<p>Error</p>
+		<p>e</p>
+	{/await}
 {/snippet}
 
 {#snippet FilmNotFound()}
