@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { dbRead, dbWrite } from './db.server';
-import type { Cookies } from '@sveltejs/kit';
+import type { Cookies, RequestEvent } from '@sveltejs/kit';
 
 const ERRORS = {
 	LOGIN: 'No such user or invalid password.',
@@ -52,4 +52,8 @@ export function setCookie(email: string, cookies: Cookies) {
 
 export function logout(cookies: Cookies) {
 	cookies.delete('email', { path: '/' });
+}
+
+export function userEmail(event: RequestEvent) {
+	return event.cookies.get('email');
 }
