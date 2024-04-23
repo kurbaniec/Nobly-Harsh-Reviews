@@ -44,28 +44,33 @@ To host this bastion of critiques, use a platform like Vercel. Currently deploye
 ## Pages / Features
 
 * **Home Page `/`:**   
-  An introduction to the app, featuring Sir Reginald Pique’s latest critiques.
+  An introduction to the app, featuring Sir Reginald Pique’s latest critiques.   
+  ![](.img/home.png)
   
 * **Login & Registration Page `/login`:**   
-  Engage more personally with Sir Reginald's world. Register to curate collections of your favourite films (and critiques). Use the demo account test@local.com with the password "test" for a sneak peek.
-  > ⚠️ **Login/Register Display Issue:** Should you encounter the trifling inconvenience of your login  credentials not being displayed in the upper right corner  post-registration (perchance showing 'Login' anew), fear not. A simple  page refresh or a second login attempt should right this minor digital  discourtesy.
+  Engage more personally with Sir Reginald's world. Register to curate collections of your favourite films (and critiques). Use the demo account test@local.com with the password "test" for a sneak peek.  
+  > ⚠️ **Login/Register Display Issue:** Should you encounter the trifling inconvenience of your login  credentials not being displayed in the upper right corner  post-registration (perchance showing 'Login' anew), fear not. A simple  page refresh or a second login attempt should right this minor digital  discourtesy.  
+  ![](.img/login.png)
   
 * **Search Page `/search/{query}/{page}`:**   
-  Delve into the extensive catalog with a film title as your query. Discover films worthy of Sir Reginald’s attention—or scorn.
+  Delve into the extensive catalog with a film title as your query. Discover films worthy of Sir Reginald’s attention—or scorn.   
+  ![](.img/search.png)
   
 * **Film / Critiques Page `/film/{id}`:**   
-  Peruse the film overview and Sir Reginald’s illustrious critique. If logged in, you may also favourite films to easily access them later. For aficionados of the cinematic artistry in *Ratatouille*, Sir Reginald Pique’s discerning critique awaits your perusal at [Nobly Harsh Reviews: Ratatouille](https://nobly-harsh-reviews.vercel.app/film/2062). Venture forth and discover whether it meets his exacting standards.
+  Peruse the film overview and Sir Reginald’s illustrious critique. If logged in, you may also favourite films to easily access them later. For aficionados of the cinematic artistry in *Ratatouille*, Sir Reginald Pique’s discerning critique awaits your perusal at [Nobly Harsh Reviews: Ratatouille](https://nobly-harsh-reviews.vercel.app/film/2062). Venture forth and discover whether it meets his exacting standards.  
   > ⚠️ **Loading Time for Fresh Reviews:** Patience is a virtue, particularly when awaiting Sir Reginald Pique’s freshly inked critiques. Upon visiting a film page, it is entirely within the realm of normalcy for it to necessitate upwards of 10 seconds to display a new review. Rest assured, once Sir Reginald has committed his thoughts to the archives, subsequent displays will be as swift as a well-timed riposte.
-  >
-  > 
+  > ![](.img/critique.png)
   
 * **Favourites Page `/favourites/{page}`:**   
-  View a list of all your favorited films. A haven accessible only to the logged-in elite.
+  View a list of all your favorited films. A haven accessible only to the logged-in elite.  
+  ![](.img/favourites.png)
   
 * **Dark Mode Support:**   
-  Read critiques in the dark, sparing your eyes from the glaring truth of Sir Reginald's words.
+  Read critiques in the dark, sparing your eyes from the glaring truth of Sir Reginald's words.  
+  ![](.img/dark-mode.png)
   
 * **Responsive Design:**   
-  Whether on mobile or desktop, the experience remains as refined as Sir Reginald’s taste in film.
+  Whether on mobile or desktop, the experience remains as refined as Sir Reginald’s taste in film.  
+  <img src=".img/mobile.png" style="zoom:25%;" />
 
 Embrace the sharp insights and scathing wit of Sir Reginald Pique as you explore Nobly Harsh Reviews. May your films be worthy and your critiques ever harsh!
