@@ -1,6 +1,5 @@
 import { TMDB_TOKEN } from '$env/static/private';
-import { TMDB } from 'tmdb-ts';
-import type { MovieSearchOptions } from 'tmdb-ts/dist/endpoints';
+import { TMDB, type MovieDetails } from 'tmdb-ts';
 
 const tmdb = new TMDB(TMDB_TOKEN);
 
@@ -17,4 +16,10 @@ export async function getMovie(id: string) {
 
 export async function getPopularMovies() {
 	return await tmdb.movies.popular();
+}
+
+export async function getMovies(ids: string[]) {
+	const moviePromises = ids.map((id) => getMovie(id));
+	const movies = await Promise.all(moviePromises);
+	return movies.filter((m) => m !== undefined) as (MovieDetails & object)[];
 }

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { type Movie } from 'tmdb-ts';
+	import { type Movie, type MovieDetails } from 'tmdb-ts';
 	import { goto } from '$app/navigation';
 	import { posterNotFound, movieYear } from '$lib/tmdb';
-	const { movies }: { movies: Movie[] } = $props();
+	const { movies }: { movies: (Movie | MovieDetails)[] } = $props();
 
-	function movieDetails(movie: Movie) {
+	function movieDetails(movie: Movie | MovieDetails) {
 		goto(`/film/${movie.id}`);
 	}
 </script>
@@ -15,7 +15,7 @@
 	{/each}
 </div>
 
-{#snippet MovieCard(movie: Movie)}
+{#snippet MovieCard(movie: Movie | MovieDetails)}
 	<button
 		class="my-2 w-full grid grid-cols-1 sm:grid-cols-2 justify-items-center sm:justify-items-start"
 		onclick={() => movieDetails(movie)}

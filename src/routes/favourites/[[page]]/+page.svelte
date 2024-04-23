@@ -6,8 +6,7 @@
 	// Reading from `load` function as $page store seems not updating correctly
 	// https://github.com/sveltejs/kit/issues/11533
 	const { data } = $props();
-	const search = $derived(data.search);
-	const movieSearchPromise = $derived(data.movieSearchPromise);
+	const favouritePromise = $derived(data.movieFavouritePromise);
 
 	// Required so that state is always up to date with `data.page`
 	// If effect is ommited page number is not correct
@@ -24,20 +23,26 @@
 	});
 
 	function movePage() {
-		goto(`/search/${search}/${pageNavigation}`);
+		goto(`/favourites/${pageNavigation}`);
 	}
 </script>
 
-<h1 class="text-center sm:text-start pb-2">Films found for <i>"{search}"</i>:</h1>
+<h1 class="text-center sm:text-start pb-2">Favourite Films:</h1>
 
-{#await movieSearchPromise then movieSearch}
-	<MovieList movies={movieSearch.results} />
-	<div class="flex justify-center">
-		<Pagination min={1} max={movieSearch.total_pages} bind:page={pageNavigation} />
-	</div>
+{#await favouritePromise then movieSearch}
+	{#if movieSearch.results.length !== 0}
+		<MovieList movies={movieSearch.results} />
+		<div class="flex justify-center">
+			<Pagination min={1} max={movieSearch.totalPages} bind:page={pageNavigation} />
+		</div>
+	{:else}
+		<h1>
+			The emptiness of your favorites list rivals Sir Reginald’s disdain for modern cinema. Add
+			some, won't you?
+		</h1>
+	{/if}
 {:catch e}
 	<h1 class="error">
-		It seems Sir Reginald Pique has misplaced his spectacles again. No films can be spotted without
-		them.
+		It appears that the films have taken a day off. Sir Reginald advises you to do the same.
 	</h1>
 {/await}

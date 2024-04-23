@@ -1,6 +1,6 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import { userEmail } from './login.server';
-import { getMovie } from './tmdb.server';
+import { getMovie, getMovies } from './tmdb.server';
 import type { MovieDetails } from 'tmdb-ts';
 import { dbRead, dbWrite } from './db.server';
 
@@ -60,6 +60,38 @@ export async function isFavouriteMovie(email: string, movie: MovieDetails) {
 	const favourites = (await dbRead<string[]>(key)) ?? [];
 	const id = `${movie.id}`;
 	return favourites.includes(id);
+}
+
+export interface FavouriteMoviesPage {
+	results: (MovieDetails & object)[];
+	page: number;
+	totalPages: number;
+}
+
+export async function getFavouriteMovies(
+	email: string,
+	page: number | undefined,
+	pageSize: number = 10
+): Promise<FavouriteMoviesPage> {
+	const defaultPage = page ?? 1;
+	const key = favouritesKey(email);
+	const favouriteIds = (await dbRead<string[]>(key)) ?? [];
+
+	const totalMovies = favouriteIds.length;
+	const totalPages = Math.ceil(totalMovies / pageSize);
+	const startIndex = (defaultPage - 1) * pageSize;
+	const endIndex = startIndex + pageSize;
+
+	const pageIds = favouriteIds.slice(startIndex, endIndex);
+
+	const results = await getMovies(pageIds);
+	const defaultTotalPages = Math.max(totalPages, 1);
+
+	return {
+		results,
+		page: defaultPage,
+		totalPages: defaultTotalPages
+	};
 }
 
 function favouritesKey(email: string) {

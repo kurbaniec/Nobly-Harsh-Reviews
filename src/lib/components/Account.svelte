@@ -20,7 +20,7 @@
 	<div class="dropdown">
 		<span>{email}</span>
 		<div class="dropdown-content">
-			<a href="/login">Favourites</a>
+			<a href="/favourites/1">Favourites</a>
 			<form method="POST" action="/login?/logout" data-sveltekit-reload>
 				<button class="dropdown-button">Logout</button>
 			</form>
