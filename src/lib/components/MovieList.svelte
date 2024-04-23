@@ -1,15 +1,8 @@
 <script lang="ts">
 	import { type Movie } from 'tmdb-ts';
 	import { goto } from '$app/navigation';
-	import { moviePosterFallback, movieYear } from '$lib/tmdb';
+	import { posterNotFound, movieYear } from '$lib/tmdb';
 	const { movies }: { movies: Movie[] } = $props();
-
-	function posterNotFound(ev: Event) {
-		// https://stackoverflow.com/a/69025425/12347616
-		// Load "Ratatouille" poster as fallback...
-		// @ts-ignore
-		ev.target.src = moviePosterFallback;
-	}
 
 	function movieDetails(movie: Movie) {
 		goto(`/film/${movie.id}`);

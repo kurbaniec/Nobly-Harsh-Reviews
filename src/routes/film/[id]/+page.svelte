@@ -1,18 +1,11 @@
 <script lang="ts">
-	import { movieYear, moviePosterFallback } from '$lib/tmdb.js';
+	import { movieYear, posterNotFound } from '$lib/tmdb.js';
 	import { type MovieDetails } from 'tmdb-ts';
 	const { data } = $props();
 
 	const id = $derived(data.id);
 	const moviePromise = $derived(data.moviePromise);
 	const reviewPromise = $derived(data.reviewPromise);
-
-	function posterNotFound(ev: Event) {
-		// https://stackoverflow.com/a/69025425/12347616
-		// Load "Ratatouille" poster as fallback...
-		// @ts-ignore
-		ev.target.src = moviePosterFallback;
-	}
 </script>
 
 {#await moviePromise then movie}

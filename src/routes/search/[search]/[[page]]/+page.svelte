@@ -27,13 +27,6 @@
 	function movePage() {
 		goto(`/search/${search}/${pageNavigation}`);
 	}
-
-	function posterNotFound(ev: Event) {
-		// https://stackoverflow.com/a/69025425/12347616
-		// Load "Ratatouille" poster as fallback...
-		// @ts-ignore
-		ev.target.src = moviePosterFallback;
-	}
 </script>
 
 <h1 class="text-center sm:text-start pb-2">Films found for <i>"{search}"</i>:</h1>
