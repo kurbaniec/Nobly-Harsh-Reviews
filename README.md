@@ -39,36 +39,33 @@ To breathe life into Sir Reginald’s digital abode:
 npm run dev
 ```
 
-To host this bastion of critiques, use a platform like Vercel. Currently deployed for your skeptical perusal at https://test.com.
+To host this bastion of critiques, use a platform like Vercel. Currently deployed for your skeptical perusal at https://nobly-harsh-reviews.vercel.app.
 
 ## Pages / Features
 
-* **Home Page `/`:** 
-  
+* **Home Page `/`:**   
   An introduction to the app, featuring Sir Reginald Pique’s latest critiques.
   
-* **Login & Registration Page `/login`:** 
-  
+* **Login & Registration Page `/login`:**   
   Engage more personally with Sir Reginald's world. Register to curate collections of your favourite films (and critiques). Use the demo account test@local.com with the password "test" for a sneak peek.
+  > ⚠️ **Login/Register Display Issue:** Should you encounter the trifling inconvenience of your login  credentials not being displayed in the upper right corner  post-registration (perchance showing 'Login' anew), fear not. A simple  page refresh or a second login attempt should right this minor digital  discourtesy.
   
-* **Search Page `/search/{query}/{page}`:** 
-  
+* **Search Page `/search/{query}/{page}`:**   
   Delve into the extensive catalog with a film title as your query. Discover films worthy of Sir Reginald’s attention—or scorn.
   
-* **Film / Critiques Page `/film/{id}`:** 
+* **Film / Critiques Page `/film/{id}`:**   
+  Peruse the film overview and Sir Reginald’s illustrious critique. If logged in, you may also favourite films to easily access them later. For aficionados of the cinematic artistry in *Ratatouille*, Sir Reginald Pique’s discerning critique awaits your perusal at [Nobly Harsh Reviews: Ratatouille](https://nobly-harsh-reviews.vercel.app/film/2062). Venture forth and discover whether it meets his exacting standards.
+  > ⚠️ **Loading Time for Fresh Reviews:** Patience is a virtue, particularly when awaiting Sir Reginald Pique’s freshly inked critiques. Upon visiting a film page, it is entirely within the realm of normalcy for it to necessitate upwards of 10 seconds to display a new review. Rest assured, once Sir Reginald has committed his thoughts to the archives, subsequent displays will be as swift as a well-timed riposte.
+  >
+  > 
   
-  Peruse the film overview and Sir Reginald’s illustrious critique. If logged in, you may also favourite films to easily access them later.
-  
-* **Favourites Page `/favourites/{page}`:** 
-  
+* **Favourites Page `/favourites/{page}`:**   
   View a list of all your favorited films. A haven accessible only to the logged-in elite.
   
-* **Dark Mode Support:** 
-  
+* **Dark Mode Support:**   
   Read critiques in the dark, sparing your eyes from the glaring truth of Sir Reginald's words.
   
-* **Responsive Design:** 
-
+* **Responsive Design:**   
   Whether on mobile or desktop, the experience remains as refined as Sir Reginald’s taste in film.
 
 Embrace the sharp insights and scathing wit of Sir Reginald Pique as you explore Nobly Harsh Reviews. May your films be worthy and your critiques ever harsh!
