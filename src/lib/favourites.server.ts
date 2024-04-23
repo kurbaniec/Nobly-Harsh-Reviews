@@ -55,6 +55,13 @@ async function authenticateAndGetUserAndMovie(
 	return OK;
 }
 
+export async function isFavouriteMovie(email: string, movie: MovieDetails) {
+	const key = favouritesKey(email);
+	const favourites = (await dbRead<string[]>(key)) ?? [];
+	const id = `${movie.id}`;
+	return favourites.includes(id);
+}
+
 function favouritesKey(email: string) {
 	return `favourites:${email}`;
 }

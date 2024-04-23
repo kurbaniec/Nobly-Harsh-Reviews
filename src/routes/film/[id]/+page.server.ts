@@ -1,14 +1,15 @@
+import { isFavouriteMovie } from '$lib/favourites.server.js';
 import { filmReviewBySirReginaldPique } from '$lib/film.review.server.js';
 import { getMovie } from '$lib/tmdb.server.js';
+import type { MovieDetails } from 'tmdb-ts';
 
 export async function load(event) {
 	const { id } = event.params;
+	const email = event.locals.email;
 
 	const moviePromise = getMovie(id);
-	const reviewPromise = moviePromise.then((movie) => {
-		if (!movie) return Promise.resolve('');
-		return filmReviewBySirReginaldPique(movie);
-	});
+	const favouritePromise = buildFavouritPromise(email, moviePromise);
+	const reviewPromise = buildReviewPromise(moviePromise);
 
 	const notFoundMessage = randomNotFoundMessage();
 	const loadingReviewMessage = randomReviewLoadingText();
@@ -16,10 +17,27 @@ export async function load(event) {
 	return {
 		id,
 		moviePromise,
+		favouritePromise,
 		reviewPromise,
 		notFoundMessage,
 		loadingReviewMessage
 	};
+}
+
+async function buildFavouritPromise(
+	email: string | undefined,
+	moviePromise: Promise<(MovieDetails & object) | undefined>
+) {
+	if (email === undefined) return Promise.resolve(undefined);
+	const movie = await moviePromise;
+	if (!movie) return Promise.resolve(undefined);
+	return await isFavouriteMovie(email, movie);
+}
+
+async function buildReviewPromise(moviePromise: Promise<(MovieDetails & object) | undefined>) {
+	const movie = await moviePromise;
+	if (!movie) return Promise.resolve('');
+	return await filmReviewBySirReginaldPique(movie);
 }
 
 function randomNotFoundMessage(): string {

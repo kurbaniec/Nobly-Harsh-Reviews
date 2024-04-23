@@ -7,18 +7,23 @@
 	const moviePromise = $derived(data.moviePromise);
 	const reviewPromise = $derived(data.reviewPromise);
 
+	let isFavourite: boolean | undefined = $state(undefined);
+	data.favouritePromise.then((f) => {
+		isFavourite = f;
+	});
+
 	async function favourite() {
 		const result = await fetch(`/api/film/${id}/favourite`, {
 			method: 'PUT'
 		});
-		console.log('result', result);
+		if (result.ok) isFavourite = true;
 	}
 
 	async function unfavourite() {
 		const result = await fetch(`/api/film/${id}/favourite`, {
 			method: 'DELETE'
 		});
-		console.log('result', result);
+		if (result.ok) isFavourite = false;
 	}
 </script>
 
@@ -46,8 +51,7 @@
 		/>
 		<div>
 			<p class="pt-2 sm:pt-0 text-justify">{movie.overview}</p>
-			<button onclick={() => favourite()}>Fav</button>
-			<button onclick={() => unfavourite()}>UnFav</button>
+			{@render Favourite()}
 		</div>
 	</div>
 	<hr class="my-3" />
@@ -55,6 +59,14 @@
 		<span class="inline-block">Sir Reginald Pique</span> concludes:
 	</h2>
 	{@render Review()}
+{/snippet}
+
+{#snippet Favourite()}
+	{#if isFavourite === false}
+		<button onclick={() => favourite()}>Save to Favourites</button>
+	{:else if isFavourite === true}
+		<button onclick={() => unfavourite()}>Remove from Favourites</button>
+	{/if}
 {/snippet}
 
 {#snippet Review()}
