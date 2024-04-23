@@ -15,13 +15,9 @@ export async function dbWrite<Type>(key: string, data: Type) {
 
 export async function dbRead<Type>(key: string): Promise<Type | undefined> {
 	return runCatchingAsync(async () => {
-		const data = await redis.get<string>(key);
+		const data = await redis.get<Type>(key);
 		if (!data) return undefined;
-
-		if (typeof (data as any) === 'string' && !isJSON(data)) {
-			return data as any as Type;
-		}
-		return JSON.parse(data);
+		return data;
 	});
 }
 

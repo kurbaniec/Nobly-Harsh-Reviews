@@ -6,6 +6,20 @@
 	const id = $derived(data.id);
 	const moviePromise = $derived(data.moviePromise);
 	const reviewPromise = $derived(data.reviewPromise);
+
+	async function favourite() {
+		const result = await fetch(`/api/film/${id}/favourite`, {
+			method: 'PUT'
+		});
+		console.log('result', result);
+	}
+
+	async function unfavourite() {
+		const result = await fetch(`/api/film/${id}/favourite`, {
+			method: 'DELETE'
+		});
+		console.log('result', result);
+	}
 </script>
 
 {#await moviePromise then movie}
@@ -30,7 +44,11 @@
 			alt="movie poster"
 			onerror={posterNotFound}
 		/>
-		<p class="pt-2 sm:pt-0 text-justify">{movie.overview}</p>
+		<div>
+			<p class="pt-2 sm:pt-0 text-justify">{movie.overview}</p>
+			<button onclick={() => favourite()}>Fav</button>
+			<button onclick={() => unfavourite()}>UnFav</button>
+		</div>
 	</div>
 	<hr class="my-3" />
 	<h2 class="text-center sm:text-start pb-2">

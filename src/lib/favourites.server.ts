@@ -13,7 +13,7 @@ export async function favouriteMovie(event: RequestEvent) {
 		const key = favouritesKey(email);
 		const favourites = (await dbRead<string[]>(key)) ?? [];
 		const id = `${movie.id}`;
-		if (favourites.includes(id)) {
+		if (!favourites.includes(id)) {
 			favourites.unshift(id);
 		}
 		console.log('favourites', favourites);
