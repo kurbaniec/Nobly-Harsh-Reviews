@@ -10,7 +10,7 @@
 
 	// Required so that state is always up to date with `data.page`
 	// If effect is ommited page number is not correct
-	// (Page will be the same on new search instead of `1`)
+	// (Page will stay the same on new search)
 	const page = $derived(data.page);
 	let pageNavigation = $state(data.page);
 	$effect(() => {

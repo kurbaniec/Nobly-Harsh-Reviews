@@ -16,7 +16,6 @@ export async function favouriteMovie(event: RequestEvent) {
 		if (!favourites.includes(id)) {
 			favourites.unshift(id);
 		}
-		console.log('favourites', favourites);
 		await dbWrite(key, favourites);
 	});
 }
@@ -27,7 +26,6 @@ export async function unfavouriteMovie(event: RequestEvent) {
 		let favourites = (await dbRead<string[]>(key)) ?? [];
 		const id = `${movie.id}`;
 		favourites = favourites.filter((i) => i !== id);
-		console.log('unfavourites', favourites);
 		await dbWrite(key, favourites);
 	});
 }

@@ -40,7 +40,7 @@
 	}
 </script>
 
-<div class="flex border-2 border-foreground border-opacity-20 rounded-md p-1.5">
+<div class="carousel">
 	<button class="arrow mr-1" onclick={() => move(true)}>
 		{@render LeftIcon()}
 	</button>
@@ -78,17 +78,17 @@
 		@apply !border-0;
 	}
 
+	.carousel {
+		@apply flex border-2 border-foreground border-opacity-20 rounded-md p-1.5;
+	}
+
 	.carousel-container {
-		width: 100%;
-		overflow-x: auto;
-		display: flex;
-		width: 100%;
-		align-items: center;
+		@apply w-full overflow-x-auto flex items-center;
 		@apply gap-10 sm:gap-2;
 	}
 
 	.carousel-container::-webkit-scrollbar {
-		display: none;
+		@apply hidden;
 	}
 
 	.carousel-slide {

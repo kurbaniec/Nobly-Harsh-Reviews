@@ -18,7 +18,7 @@
 	}
 </script>
 
-<div class="flex flex-row gap-0.5 pagination">
+<div class="pagination">
 	<button class="" disabled={!previousEnabled()} onclick={() => (page -= 1)}>
 		{@render LeftIcon()}
 	</button>
@@ -47,6 +47,10 @@
 {/snippet}
 
 <style lang="postcss">
+	.pagination {
+		@apply flex flex-row gap-0.5;
+	}
+
 	.pagination > button {
 		@apply !border-0 !p-1.5;
 	}

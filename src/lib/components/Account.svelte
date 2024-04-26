@@ -30,26 +30,14 @@
 
 <style lang="postcss">
 	.dropdown {
-		position: relative;
-		display: inline-block;
+		@apply relative inline-block;
 		@apply p-2;
 		@apply border border-foreground border-opacity-20;
 		@apply border-2 rounded-md;
 	}
 
 	.dropdown-content {
-		/* display: none;
-		position: absolute;
-		min-width: 160px;
-		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-		padding: 12px 16px;
-		z-index: 1;
-		width: 100%;
-		overflow: auto;
-		@apply bg-background;
-		@apply border border-foreground border-opacity-20;
-		@apply border-2 rounded-md; */
-		display: none;
+		@apply hidden;
 		@apply absolute right-0 w-24 mt-2 py-2 shadow-xl rounded z-50;
 		@apply bg-background;
 		@apply border border-foreground border-opacity-20;
@@ -58,7 +46,7 @@
 	}
 
 	.dropdown:hover .dropdown-content {
-		display: block;
+		@apply block;
 	}
 
 	.dropdown-button {
@@ -67,8 +55,7 @@
 	}
 
 	.dropdown-button-link {
-		position: relative;
-		display: inline-block;
+		@apply relative inline-block;
 		@apply text-foreground hover:bg-foreground hover:bg-opacity-10;
 		@apply p-2;
 		@apply border border-foreground border-opacity-20;

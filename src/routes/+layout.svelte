@@ -61,6 +61,10 @@
 {/snippet}
 
 <style lang="postcss">
+	/* Inspired by https://www.shadcn-svelte.com/ */
+	/* Which is not ported yet to Svelte 5 */
+	/* https://github.com/huntabyte/shadcn-svelte/issues/493 */
+
 	.theme-body {
 		@apply bg-background min-h-screen;
 	}

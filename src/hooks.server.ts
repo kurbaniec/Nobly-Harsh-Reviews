@@ -16,6 +16,7 @@ export async function handle({ event, resolve }) {
 		return await resolve(event);
 	}
 
+	// Prevent screen flickering for theme
 	return await resolve(event, {
 		transformPageChunk: ({ html }) => {
 			return html.replace('data-theme=".*"', `data-theme="${theme}"`);
