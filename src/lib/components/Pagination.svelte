@@ -24,7 +24,7 @@
 	</button>
 	{#if page !== min}<button onclick={() => (page = min)}>{min}</button>{/if}
 	{#if page - 2 > min}<span class="mt-0.5">...</span>{/if}
-	{#if page - 2 > min}<button onclick={() => (page = page - 1)}>{page - 1}</button>{/if}
+	{#if page - 1 > min}<button onclick={() => (page = page - 1)}>{page - 1}</button>{/if}
 	<button class="font-bold" disabled>{page}</button>
 	{#if page + 1 < max}<button onclick={() => (page = page + 1)}>{page + 1}</button>{/if}
 	{#if page + 2 < max}<span class="mt-0.5">...</span>{/if}
